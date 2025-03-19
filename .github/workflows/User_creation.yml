@@ -37,9 +37,9 @@ jobs:
       
           # Prepare the payload
           payload = {
-              'user_name': '${{ github.event.inputs.username }}',
-              'user_email': '${{ github.event.inputs.email }}',
-              'user_tag': '${{ github.event.inputs.tag }}'
+              'name': '${{ github.event.inputs.username }}',
+              'email': '${{ github.event.inputs.email }}',
+              'tag': '${{ github.event.inputs.tag }}'
           }
       
           # Invoke the Lambda function
