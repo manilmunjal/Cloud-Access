@@ -22,33 +22,35 @@ jobs:
 
       - name: Install boto3
         run: pip install boto3
-
       - name: Invoke AWS Lambda
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'  # Replace with your AWS region
         run: |
+          python - <<EOF
           import boto3
           import json
-
+      
           # Initialize the Lambda client
           lambda_client = boto3.client('lambda', region_name='us-east-1')
-
+      
           # Prepare the payload
           payload = {
               'username': '${{ github.event.inputs.username }}',
               'email': '${{ github.event.inputs.email }}',
               'tag': '${{ github.event.inputs.tag }}'
           }
-
+      
           # Invoke the Lambda function
           response = lambda_client.invoke(
               FunctionName='create_user',
               InvocationType='RequestResponse',
               Payload=json.dumps(payload)
           )
-
+      
           # Read and print the response
           response_payload = json.loads(response['Payload'].read())
           print(response_payload)
+          EOF
+      
