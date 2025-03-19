@@ -37,8 +37,8 @@ jobs:
       
           # Prepare the payload
           payload = {
-              'username': '${{ github.event.inputs.username }}',
-              'email': '${{ github.event.inputs.email }}',
+              'user_name': '${{ github.event.inputs.username }}',
+              'user_email': '${{ github.event.inputs.email }}',
               'tag': '${{ github.event.inputs.tag }}'
           }
       
