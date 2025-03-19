@@ -39,7 +39,7 @@ jobs:
           payload = {
               'user_name': '${{ github.event.inputs.username }}',
               'user_email': '${{ github.event.inputs.email }}',
-              'tag': '${{ github.event.inputs.tag }}'
+              'user_tag': '${{ github.event.inputs.tag }}'
           }
       
           # Invoke the Lambda function
